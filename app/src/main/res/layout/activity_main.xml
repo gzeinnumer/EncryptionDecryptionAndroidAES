@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        style="@style/MyTextContent"
+        android:layout_gravity="center"
+        android:text="Password" />
+
+    <EditText
+        android:id="@+id/ed_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Key" />
+
+    <TextView
+        style="@style/MyTextContent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/def_margin"
+        android:text="Encrypted" />
+
+    <EditText
+        android:id="@+id/encrypted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Text To Encrypt" />
+
+    <TextView
+        style="@style/MyTextContent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/def_margin"
+        android:text="Decrypted" />
+
+    <EditText
+        android:id="@+id/decrypted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:hint="Decrypted" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Encrypt" />
+
+        <Button
+            android:id="@+id/btn_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:text="Decrypt" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
