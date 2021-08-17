@@ -1,19 +1,18 @@
 package com.gzeinnumer.encryptiondecryptionandroidaes;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gzeinnumer.encryptiondecryptionandroidaes.databinding.ActivityMainBinding;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,28 +27,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         binding.btnEn.setOnClickListener(v -> {
-            binding.decrypted.setText("");
-            String encryptedValue = binding.encrypted.getText().toString();
+            String encryptedValue = binding.edEncrypted.getText().toString();
             String key = binding.edKey.getText().toString();
             try {
                 String en = encrypt(encryptedValue, key);
-                binding.decrypted.setText(en);
+                binding.edDecrypted.setText(en);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         binding.btnDe.setOnClickListener(v -> {
-            binding.encrypted.setText("");
-            String decryptedValue = binding.decrypted.getText().toString();
+            String decryptedValue = binding.edDecrypted.getText().toString();
             String key = binding.edKey.getText().toString();
             String en = null;
             try {
                 en = decrypt(decryptedValue, key);
             } catch (Exception e) {
-                Toast.makeText(MainActivity.this, "Wrong Password : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Wrong Password : " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-            binding.encrypted.setText(en);
+            binding.edDecryptedToEncrypted.setText(en);
+        });
+        binding.btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.edKey.requestFocus();
+                binding.edKey.setText("");
+                binding.edEncrypted.setText("");
+                binding.edDecrypted.setText("");
+                binding.edDecryptedToEncrypted.setText("");
+            }
         });
     }
 
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SecretKeySpec generateKey(String key) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] bytes = key.getBytes("UTF-8");
+        byte[] bytes = key.getBytes(StandardCharsets.UTF_8);
         digest.update(bytes, 0, bytes.length);
         byte[] keySecurity = digest.digest();
         return new SecretKeySpec(keySecurity, AES);
