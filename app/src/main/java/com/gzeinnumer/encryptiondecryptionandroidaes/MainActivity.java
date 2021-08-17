@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SecretKeySpec generateKey(String key) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] bytes = key.getBytes(StandardCharsets.UTF_8);
+        byte[] bytes = key.getBytes("UTF_8");
         digest.update(bytes, 0, bytes.length);
         byte[] keySecurity = digest.digest();
         return new SecretKeySpec(keySecurity, AES);
