@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,41 +7,38 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        style="@style/MyTextContent"
-        android:layout_gravity="center"
-        android:text="Password" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_key_p"
+        style="@style/MyTextInputLayoutOutlinedBox"
+        android:hint="Key">
 
-    <EditText
-        android:id="@+id/ed_key"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Key" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_key"
+            style="@style/MyTextInputEditText" />
 
-    <TextView
-        style="@style/MyTextContent"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/def_margin"
-        android:text="Encrypted" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/encrypted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Text To Encrypt" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_encrypted_p"
+        style="@style/MyTextInputLayoutOutlinedBox"
+        android:hint="To Encrypt">
 
-    <TextView
-        style="@style/MyTextContent"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/def_margin"
-        android:text="Decrypted" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_encrypted"
+            style="@style/MyTextInputEditText" />
 
-    <EditText
-        android:id="@+id/decrypted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:hint="Decrypted" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_decrypted_p"
+        style="@style/MyTextInputLayoutOutlinedBox"
+        android:hint="Decrypted">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_decrypted"
+            style="@style/MyTextInputEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,15 +47,13 @@
 
         <Button
             android:id="@+id/btn_en"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/MyButtonContained"
             android:layout_weight="1"
             android:text="Encrypt" />
 
         <Button
             android:id="@+id/btn_de"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/MyButtonContained"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
@@ -67,5 +61,22 @@
 
     </LinearLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ed_decrypted_to_encrypted_p"
+        style="@style/MyTextInputLayoutOutlinedBox"
+        android:hint="Decrypted To Encrypted">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_decrypted_to_encrypted"
+            style="@style/MyTextInputEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_reset"
+        style="@style/MyButtonContained"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/def_margin"
+        android:text="Reset" />
 
 </LinearLayout>
