@@ -11,6 +11,9 @@ import com.gzeinnumer.encryptiondecryptionandroidaes.databinding.ActivityMainBin
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private final String AES = "AES";
+    private final String UTF_8 = "UTF_8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +83,20 @@ public class MainActivity extends AppCompatActivity {
 
     private SecretKeySpec generateKey(String key) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] bytes = key.getBytes("UTF_8");
+        byte[] bytes = key.getBytes(UTF_8);
         digest.update(bytes, 0, bytes.length);
         byte[] keySecurity = digest.digest();
         return new SecretKeySpec(keySecurity, AES);
+    }
+
+
+    public static final int IV_LENGTH = 16;
+    private static final String RANDOM_ALGORITHM = "SHA1PRNG";
+
+    private static byte[] generateIv() throws NoSuchAlgorithmException, NoSuchProviderException {
+        SecureRandom random = SecureRandom.getInstance(RANDOM_ALGORITHM);
+        byte[] iv = new byte[IV_LENGTH];
+        random.nextBytes(iv);
+        return iv;
     }
 }
